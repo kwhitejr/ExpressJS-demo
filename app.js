@@ -16,21 +16,30 @@ app.get('/faq', function(req, res) {
   res.send('What you need?');
 });
 
-app.get('/contact', function(req, res) {
-  res.send('<form>Dat Form Doe</form>');
-});
+app.route('/contact')
+  .get(function(req, res) {
+    res.send('<form>Dat Form Doe</form>');
+  })
+  .post(function(req, res) {
+    res.send('Got a POST request');
+  })
+  .put(function(req, res) {
+    res.send('Got a PUT request at /user');
+  })
+  .delete(function(req, res) {
+    res.send('Got a DELETE request at /user');
+  });
 
-app.post('/contact', function(req, res) {
-  res.send('Got a POST request');
-});
-
-app.put('/contact', function(req, res) {
-  res.send('Got a PUT request at /user');
-});
-
-app.delete('/contact', function(req, res) {
-  res.send('Got a DELETE request at /user');
-});
+app.route('/book')
+  .get(function(req, res) {
+    res.send('Get a random book');
+  })
+  .post(function(req, res) {
+    res.send('Add a book');
+  })
+  .put(function(req, res) {
+    res.send('Update the book');
+  });
 
 var server = app.listen(3000, function () {
   var host = server.address().address;
