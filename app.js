@@ -12,7 +12,7 @@ app.set('views', './views');
 app.use(express.static('public'));
 
 app.get('/', function(req, res) {
-  res.render(index);
+  res.render('index', { name: 'Kevin', pageTitle: 'Kevin\'s Page, Fool!' });
 });
 
 app.get('/about', function(req, res) {
