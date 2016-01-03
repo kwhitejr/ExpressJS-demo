@@ -3,11 +3,16 @@ var express = require('express');
 var app = express();
 var users = require('./routes/users');
 
+/******* Using Jade for Templates ********/
+//Tell Express which Template engine we are using by NPM module name
+app.set('view engine', 'jade');
+//Tell Express where our template files live
+app.set('views', './views');
 
 app.use(express.static('public'));
 
 app.get('/', function(req, res) {
-  res.send('Hello World!');
+  res.render(index);
 });
 
 app.get('/about', function(req, res) {
