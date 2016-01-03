@@ -1,6 +1,8 @@
 // This type of 'require' looks first in the local node_modules folder, then the global node_modules folder.
 var express = require('express');
 var app = express();
+var users = require('./routes/users');
+
 
 app.use(express.static('public'));
 
@@ -40,6 +42,23 @@ app.route('/book')
   .put(function(req, res) {
     res.send('Update the book');
   });
+
+app.route('/user')
+  .put(function(req, res) {
+      res.send('Got a PUT request at /user');
+  })
+  .delete(function(req, res) {
+      res.send('Got a DELETE request at /user');
+  });
+
+app.get('/ab?cd', function(req, res) {
+  res.send('ab?cd');
+});
+
+//Defer all routes matching
+//http://localhost:3000/users to module
+// Declared everything relative to '/users' only
+app.use('/users', users);
 
 var server = app.listen(3000, function () {
   var host = server.address().address;
